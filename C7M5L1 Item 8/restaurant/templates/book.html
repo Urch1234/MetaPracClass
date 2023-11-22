@@ -18,6 +18,8 @@
             </p>
             <p>
             <!-- Step 9: Part one -->
+              <label for="Reservation">Reservation date:</label>
+              <input type="date" placeholder="Enter a Date" required="" id="reservation_date">
             </p>
       
             <p>
@@ -49,14 +51,15 @@
 <script>
 
   const date = new Date()
-  document.getElementById('reservation_date').value = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate().toString().padStart(2, "0")}`
+  document.getElementById('reservation_date').value = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate().toString().padStart(2, "0")}`;
+  
 
   console.log(document.getElementById('reservation_date').value)
   getBookings()
 
 
   /*  Step 10: Part two */
-
+  document.getElementById('reservation_date').addEventListener('change', getBookings());
 
   function getBookings() {
     let reserved_slots = []
@@ -70,10 +73,18 @@
         bookings = ''
         
         /* Step 11: Part three */
+        const reserved_slots = [];
+        let bookings = "";
 
+        for (const item of data) {
+          console.log(item.fields);
+          reserved_slots.push(item.fields.reservation_slot);
+
+          bookings += `<p>${item.fields.first_name} - ${formatTime(item.fields.reservation_slot)}</p>`;
+        }
 
         /* Step 12: Part four  */
-
+        
         
         document.getElementById('reservation_slot').innerHTML = slot_options
         if(bookings==''){
