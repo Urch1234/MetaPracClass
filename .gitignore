@@ -1,0 +1,9 @@
+# .gitignore
+
+# Virtual environment
+__pychache__/
+venv/
+
+# Pipenv
+Pipfile
+Pipfile.lock
